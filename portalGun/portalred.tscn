@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0gk8km8j6omf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpm2g"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8uaq8"]
+material = SubResource("StandardMaterial3D_jpm2g")
+
+[node name="PORTALRED" type="Node3D"]
+
+[node name="Portal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_8uaq8")
+
+[node name="CameraRed" type="Camera3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="."]

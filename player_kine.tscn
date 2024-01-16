@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://s2v7hc4grqk4"]
+
+[ext_resource type="Script" path="res://src/player_kine.gd" id="1_yrbqc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_557kq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wwi3v"]
+
+[node name="Player_Kine" type="CharacterBody3D"]
+script = ExtResource("1_yrbqc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_557kq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_wwi3v")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405613, 0)
