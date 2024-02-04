@@ -6,7 +6,11 @@ var twist_input := 0.0
 var pitch_input := 0.0
 var ground_ray := RayCast3D
 
-const hand_dict := { "PortalGun" : "res://portalGun/portal_gun.tscn" }
+#const hand_dict := { "PortalGun" : "res://portalGun/portal_gun.tscn" }
+const inhand := "res://guns/boop/boop_gun.tscn"
+
+# boop gun : "res://guns/boop/boop_gun.tscn"
+#portal gun : "res://portalGun/portal_gun.tscn"
 
 var test_load := preload("res://portalGun/portalblue.tscn")
 
@@ -45,7 +49,7 @@ func _ready():
 		$TwistPivot/PitchPivot/Camera.transform.origin = head_pos
 	
 	var handpos = $TwistPivot/PitchPivot/Inhand
-	gun = preload("res://portalGun/portal_gun.tscn").instantiate()
+	gun = preload(inhand).instantiate()
 	#f.transform.origin = head_pos
 	#
 	handpos.add_child(gun)
@@ -71,9 +75,12 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("ui_m1"):
 		
-		gun.set_portal_point(action_ray.get_collision_point())
-		gun.set_portal_point_normal(action_ray.get_collision_normal())
 		
+		gun.pass_point(action_ray.get_collision_point())
+		gun.pass_normal(action_ray.get_collision_normal())
+	
+	
+	
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)

@@ -34,10 +34,10 @@ func _process(delta):
 	
 	
 	
-func set_portal_point(x : Vector3):
+func pass_point(x : Vector3):
 	portal_point = x
 	
-func set_portal_point_normal(x : Vector3):
+func pass_normal(x : Vector3):
 	portal_point_normal = x
 
 
@@ -66,7 +66,7 @@ func place_portal():
 		get_tree().root.add_child(portal_red_instance)
 		portal_red_instance.look_at(portal_point + Vector3(0.001,0.001,0.001) - portal_point_normal)
 	
-	#placed_blue = not placed_blue
+	placed_blue = not placed_blue
 
 
 

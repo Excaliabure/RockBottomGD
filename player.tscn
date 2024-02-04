@@ -37,7 +37,6 @@ transform = Transform3D(1, 0, 0, 0, -1.74846e-06, -1, 0, 40, -4.37114e-08, 0, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0.209842, 0.180282, -1.02243)
 
 [node name="GroundRay" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.442802, 0, 0, 0, 1, 0, -0.634041, 0)
 collision_mask = 3
 
 [node name="Head" type="Node3D" parent="."]
