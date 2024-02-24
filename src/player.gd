@@ -7,7 +7,7 @@ var pitch_input := 0.0
 var ground_ray := RayCast3D
 
 #const hand_dict := { "PortalGun" : "res://portalGun/portal_gun.tscn" }
-const inhand := "res://guns/boop/boop_gun.tscn"
+const inhand := "res://portalGun/portal_gun.tscn"
 
 # boop gun : "res://guns/boop/boop_gun.tscn"
 #portal gun : "res://portalGun/portal_gun.tscn"
