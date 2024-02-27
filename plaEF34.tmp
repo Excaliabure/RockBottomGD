@@ -13,8 +13,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [node name="Player" type="RigidBody3D"]
 lock_rotation = true
 script = ExtResource("1_em5fq")
-first_person = false
-Hp = ExtResource("2_2al8u")
+metadata/R = ExtResource("2_2al8u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_vsd8w")

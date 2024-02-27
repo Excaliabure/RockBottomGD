@@ -6,9 +6,9 @@ var twist_input := 0.0
 var pitch_input := 0.0
 var ground_ray := RayCast3D
 
+
 #const hand_dict := { "PortalGun" : "res://portalGun/portal_gun.tscn" }
 const inhand := "res://portalGun/portal_gun.tscn"
-
 # boop gun : "res://guns/boop/boop_gun.tscn"
 #portal gun : "res://portalGun/portal_gun.tscn"
 
@@ -29,7 +29,7 @@ var is_jumping := false
 @onready var head := $Head
 @export var first_person := true
 @export var Guntype := "PortalGun"
-
+@export var Hp : Resource
 
 var temp = false
 
@@ -39,6 +39,7 @@ signal action_ray_normal
 
 
 func _ready():
+	print(Hp.health)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	var head_pos = head.transform.origin
@@ -75,10 +76,11 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("ui_m1"):
 		
-		
 		gun.pass_point(action_ray.get_collision_point())
 		gun.pass_normal(action_ray.get_collision_normal())
 	
+	if Input.is_action_just_pressed("ui_m2"):
+		print(action_ray.get_collision_point()) 
 	
 	
 	

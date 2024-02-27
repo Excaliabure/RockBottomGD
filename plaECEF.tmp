@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdrjq4yn7jhgs"]
+[gd_scene load_steps=5 format=3 uid="uid://cdrjq4yn7jhgs"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_em5fq"]
-[ext_resource type="Resource" uid="uid://bmkfgpd03fiay" path="res://resource_hp.tres" id="2_2al8u"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_4gm27"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vsd8w"]
@@ -13,8 +12,8 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [node name="Player" type="RigidBody3D"]
 lock_rotation = true
 script = ExtResource("1_em5fq")
-first_person = false
-Hp = ExtResource("2_2al8u")
+first_person = null
+Guntype = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_vsd8w")
