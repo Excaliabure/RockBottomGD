@@ -26,12 +26,16 @@ var is_jumping := false
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var action_ray := $TwistPivot/PitchPivot/Camera/ActionRay
+@onready var bar := $health_bar
 @onready var head := $Head
 @export var first_person := true
 @export var Guntype := "PortalGun"
 @export var Hp : Resource
 
+
+
 var temp = false
+ 
 
 
 signal action_ray_pos
@@ -39,7 +43,10 @@ signal action_ray_normal
 
 
 func _ready():
-	print(Hp.health)
+	
+	bar.value = 20
+	
+	Hp = load("res://resources/resource_hp.tres")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	var head_pos = head.transform.origin
@@ -66,6 +73,7 @@ func _process(delta):
 	
 	
 	if Input.is_action_just_pressed("ui_jump") and not is_jumping:
+		
 		apply_impulse(Vector3(0, jump_force, 0))
 		is_jumping = true
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -74,14 +82,20 @@ func _process(delta):
 	if $GroundRay.is_colliding():
 		is_jumping = false
 		
-	if Input.is_action_just_pressed("ui_m1"):
+	if Input.is_action_just_pressed("ui_m1") or Input.is_action_just_pressed("c"):
 		
 		gun.pass_point(action_ray.get_collision_point())
 		gun.pass_normal(action_ray.get_collision_normal())
+		bar.value -= 0.2
 	
 	if Input.is_action_just_pressed("ui_m2"):
 		print(action_ray.get_collision_point()) 
 	
+	if Input.is_action_just_pressed("r"):
+		transform.origin = Vector3(0,10,0)
+		input = Vector3.ZERO
+		linear_velocity = Vector3.ZERO
+
 	
 	
 	twist_pivot.rotate_y(twist_input)

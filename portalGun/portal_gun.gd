@@ -72,7 +72,7 @@ func place_portal():
 
 func portal_fun():
 	
-	print(portal_blue_instance.get_view())
+	#print(portal_blue_instance.get_view())
 	
 	
 	pass

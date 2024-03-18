@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="hp" load_steps=2 format=3 uid="uid://bmkfgpd03fiay"]
-
-[ext_resource type="Script" path="res://resource_hp.gd" id="1_a0qsx"]
-
-[resource]
-script = ExtResource("1_a0qsx")
-health = 10

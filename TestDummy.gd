@@ -6,14 +6,16 @@ var speed = 100  # Adjust the speed of movement
 var target_position = Vector3()  # Target position for the AI to move towards
 var collision_distance = 50  # Distance to detect obstacles
 
+
+
 func _ready():
+	
 	pass  # Initialization code goes here
 
 func _process(delta):
 	## Calculate the movement vector towards the target position
 	
-	#var obstacle_direction = check_for_obstacle()
-##
+
 	### If there's an obstacle, adjust movement vector
 	#if obstacle_direction != Vector3.ZERO:
 		#movement_vector = movement_vector.slide(obstacle_direction)

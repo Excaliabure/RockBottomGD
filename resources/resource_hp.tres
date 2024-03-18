@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="hp" load_steps=2 format=3 uid="uid://bmkfgpd03fiay"]
+
+[ext_resource type="Script" path="res://resources/resource_hp.gd" id="1_1sbks"]
+
+[resource]
+script = ExtResource("1_1sbks")
+health = 30
+debug = false
