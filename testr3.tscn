@@ -109,3 +109,6 @@ environment = SubResource("Environment_i5lfa")
 
 [node name="Dummie" parent="." instance=ExtResource("4_015mw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25514, 1.38706, 4.83971)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.264496, 0.964387, 0, -0.964387, 0.264496, -3.71823, 1.18836, 4.29518)
