@@ -5,6 +5,8 @@ var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
 var ground_ray := RayCast3D
+var max_speed := 15
+
 
 
 #const hand_dict := { "PortalGun" : "res://portalGun/portal_gun.tscn" }
@@ -20,8 +22,10 @@ var Camera1 : Camera3D
 var gun = 0.0
 
 
-var jump_force := 5.0
+var jump_force := 7.0
 var is_jumping := false
+var is_teleporting := false
+
 
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
@@ -31,12 +35,10 @@ var is_jumping := false
 @export var first_person := true
 @export var Guntype := "PortalGun"
 @export var Hp : Resource
-
+@export var Anchor : Resource
 
 
 var temp = false
- 
-
 
 signal action_ray_pos
 signal action_ray_normal
@@ -45,7 +47,7 @@ signal action_ray_normal
 func _ready():
 	
 	bar.value = 20
-	
+		
 	Hp = load("res://resources/resource_hp.tres")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -66,31 +68,38 @@ func _ready():
 		
 func _process(delta):
 	var input := Vector3.ZERO
-	input.x = Input.get_axis("ui_a","ui_d")
-	input.z = Input.get_axis("ui_w","ui_s")
+	if linear_velocity.length() < max_speed and !is_jumping:
+		input = Vector3(Input.get_axis("ui_a","ui_d"), 0 , Input.get_axis("ui_w","ui_s"))
+	
 	
 	apply_central_force(twist_pivot.basis * input * 1200.0 * delta)
+	
 	
 	
 	if Input.is_action_just_pressed("ui_jump") and not is_jumping:
 		
 		apply_impulse(Vector3(0, jump_force, 0))
 		is_jumping = true
+		input = Vector3.ZERO
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	if $GroundRay.is_colliding():
 		is_jumping = false
+	else:
+		is_jumping = true
 		
 	if Input.is_action_just_pressed("ui_m1") or Input.is_action_just_pressed("c"):
 		
 		gun.pass_point(action_ray.get_collision_point())
 		gun.pass_normal(action_ray.get_collision_normal())
 		bar.value -= 0.2
-	
+		$Anchor._teleport_seq(transform)
+		
+			
 	if Input.is_action_just_pressed("ui_m2"):
-		print(action_ray.get_collision_point()) 
-	
+		#print(action_ray.get_collision_point()) 
+		pass
 	if Input.is_action_just_pressed("r"):
 		transform.origin = Vector3(0,10,0)
 		input = Vector3.ZERO
@@ -108,13 +117,11 @@ func _process(delta):
 	pitch_input = 0.0
 	twist_pivot.rotation.z = 0.0
 	
-	
+	$Velocity.text = str(linear_velocity.length()).left(5)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			twist_input = - event.relative.x * mouse_sensitivity
 			pitch_input = - event.relative.y * mouse_sensitivity
-
-	
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdrjq4yn7jhgs"]
+[gd_scene load_steps=9 format=3 uid="uid://cdrjq4yn7jhgs"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_em5fq"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_4gm27"]
 [ext_resource type="Resource" uid="uid://bmkfgpd03fiay" path="res://resources/resource_hp.tres" id="2_gr6j3"]
 [ext_resource type="Resource" uid="uid://b7iwcfpyc7u25" path="res://resources/resource_anchor.tres" id="3_xjeat"]
-[ext_resource type="PackedScene" uid="uid://dqe5df333rdib" path="res://Misc/Anchor/Anchor.tscn" id="6_wckyc"]
+[ext_resource type="Script" path="res://health_bar.gd" id="4_8usop"]
+[ext_resource type="Script" path="res://Anchor.gd" id="6_pbei3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vsd8w"]
 material = ExtResource("2_4gm27")
@@ -16,6 +17,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 lock_rotation = true
 script = ExtResource("1_em5fq")
 first_person = false
+Guntype = null
 Hp = ExtResource("2_gr6j3")
 Anchor = ExtResource("3_xjeat")
 
@@ -43,13 +45,11 @@ transform = Transform3D(1, 0, 0, 0, -1.74846e-06, -1, 0, 40, -4.37114e-08, 0, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0.209842, 0.180282, -1.02243)
 
 [node name="GroundRay" type="RayCast3D" parent="."]
-transform = Transform3D(1.16036, 0, 0, 0, 0.244415, 0, 0, 0, 1.16036, 0, -0.837594, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25037, 0)
 collision_mask = 3
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329706, 0)
-
-[node name="Anchor" parent="." instance=ExtResource("6_wckyc")]
 
 [node name="health_bar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 1, 1)
@@ -61,11 +61,7 @@ step = 0.45
 value = 35.55
 fill_mode = 3
 show_percentage = false
+script = ExtResource("4_8usop")
 
-[node name="Velocity" type="CodeEdit" parent="."]
-offset_left = 984.0
-offset_top = 11.0
-offset_right = 1144.0
-offset_bottom = 53.0
-placeholder_text = "Lore Ipsum
-"
+[node name="Node" type="Node" parent="."]
+script = ExtResource("6_pbei3")

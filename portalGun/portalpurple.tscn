@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://biolmthfa4cot"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxwx8"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mm5i8"]
+material = SubResource("StandardMaterial3D_wxwx8")
+
+[node name="Portalpurple" type="Node2D"]
+
+[node name="Portal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96, 0, 0, 0, 0.716337, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_mm5i8")
+
+[node name="CameraBlue" type="Camera3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)

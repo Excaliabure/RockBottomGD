@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b7iwcfpyc7u25"]
+
+[ext_resource type="Script" path="res://resources/resource_anchor.gd" id="1_uqlv0"]
+
+[resource]
+script = ExtResource("1_uqlv0")
+Duration = 10.0

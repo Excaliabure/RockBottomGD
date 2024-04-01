@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl0l0xns3ndox"]
+[gd_scene load_steps=6 format=3 uid="uid://bl0l0xns3ndox"]
 
 [ext_resource type="ArrayMesh" uid="uid://cn2jtbbsk2v7n" path="res://grass.res" id="1_j0h8k"]
+[ext_resource type="Shader" path="res://grass_area.gdshader" id="1_xonj4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jsxms"]
+render_priority = 0
+shader = ExtResource("1_xonj4")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wuma0"]
 material = SubResource("ShaderMaterial_jsxms")

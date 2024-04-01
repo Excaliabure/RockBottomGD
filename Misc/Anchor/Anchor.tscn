@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqe5df333rdib"]
+
+[ext_resource type="Script" path="res://Misc/Anchor/Anchor.gd" id="1_ghqyy"]
+
+[node name="Anchor" type="Node3D"]
+script = ExtResource("1_ghqyy")

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://portalGun/portalblue.gd" id="1_uau34"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxwx8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58qms"]
 albedo_color = Color(0, 0, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_suga5"]
-material = SubResource("StandardMaterial3D_wxwx8")
+material = SubResource("StandardMaterial3D_58qms")
 
 [node name="PORTALBLUE" type="Node3D"]
 script = ExtResource("1_uau34")
