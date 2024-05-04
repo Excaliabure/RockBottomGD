@@ -18,6 +18,7 @@ var test_load := preload("res://portalGun/portalblue.tscn")
 
 var Camera3 : Camera3D
 var Camera1 : Camera3D
+var stats
 
 var gun = 0.0
 
@@ -68,19 +69,25 @@ func _ready():
 		
 func _process(delta):
 	var input := Vector3.ZERO
+	input = Vector3(Input.get_axis("ui_a","ui_d"), 0 , Input.get_axis("ui_w","ui_s"))
 	if linear_velocity.length() < max_speed and !is_jumping:
-		input = Vector3(Input.get_axis("ui_a","ui_d"), 0 , Input.get_axis("ui_w","ui_s"))
-	
-	
-	apply_central_force(twist_pivot.basis * input * 1200.0 * delta)
-	
-	
+		apply_central_force(twist_pivot.basis * input * 1200.0 * delta)
+		print(linear_velocity)
+	elif !is_jumping:
+		apply_central_force(-linear_velocity * 10)
+		
+		
+	if Input.is_action_just_pressed("shift"):
+		max_speed *= 2
+	elif Input.is_action_just_released("shift"):
+		max_speed /=2
 	
 	if Input.is_action_just_pressed("ui_jump") and not is_jumping:
-		
 		apply_impulse(Vector3(0, jump_force, 0))
 		is_jumping = true
 		input = Vector3.ZERO
+		
+		
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
@@ -90,20 +97,27 @@ func _process(delta):
 		is_jumping = true
 		
 	if Input.is_action_just_pressed("ui_m1") or Input.is_action_just_pressed("c"):
-		
 		gun.pass_point(action_ray.get_collision_point())
 		gun.pass_normal(action_ray.get_collision_normal())
 		bar.value -= 0.2
-		$Anchor._teleport_seq(transform)
+		
 		
 			
 	if Input.is_action_just_pressed("ui_m2"):
+		$Anchor._teleport_seq(transform)
 		#print(action_ray.get_collision_point()) 
-		pass
+		
 	if Input.is_action_just_pressed("r"):
 		transform.origin = Vector3(0,10,0)
 		input = Vector3.ZERO
 		linear_velocity = Vector3.ZERO
+		
+	if Input.is_action_just_released("wheel_up"):
+		
+		gravity_scale += 0.1
+	elif Input.is_action_just_released("wheel_down"):
+		gravity_scale -= 0.1
+		
 
 	
 	
@@ -117,7 +131,12 @@ func _process(delta):
 	pitch_input = 0.0
 	twist_pivot.rotation.z = 0.0
 	
-	$Velocity.text = str(linear_velocity.length()).left(5)
+	stats = "Velocity : " + str(linear_velocity.length()).left(5) + "\n"
+	stats = stats + "Gravity : " + str(gravity_scale).left(5)
+	
+	
+	#$Velocity.text = str(linear_velocity.length()).left(5) 
+	$Velocity.text = stats
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

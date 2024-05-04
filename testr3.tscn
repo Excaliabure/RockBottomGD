@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://cayubuqybei7h"]
 
 [ext_resource type="Texture2D" uid="uid://bqabno4bw4ng4" path="res://textures/addons/kenney_prototype_textures/orange/texture_11.png" id="1_augkl"]
-[ext_resource type="PackedScene" uid="uid://cdrjq4yn7jhgs" path="res://player.tscn" id="2_hn6lv"]
+[ext_resource type="PackedScene" uid="uid://cdrjq4yn7jhgs" path="res://player.tscn" id="2_65h35"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am5rh"]
 albedo_texture = ExtResource("1_augkl")
@@ -69,9 +69,6 @@ mesh = SubResource("BoxMesh_mdqde")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tp2or")
 
-[node name="Player" parent="." instance=ExtResource("2_hn6lv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25481, 1.77563, -1.13107)
-
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." groups=["set_0"]]
 transform = Transform3D(12.3823, 0, 0.668365, 0, 7.35959, 0, -11.126, 0, 0.743833, -0.0353003, 2.83529, -13.2376)
 mesh = SubResource("BoxMesh_sy81a")
@@ -104,3 +101,6 @@ environment = SubResource("Environment_i5lfa")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.264496, 0.964387, 0, -0.964387, 0.264496, -3.71823, 1.18836, 4.29518)
+
+[node name="Player" parent="." instance=ExtResource("2_65h35")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50499, 5.2752)
