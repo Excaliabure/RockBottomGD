@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bglidi785q5t0"]
+
+[ext_resource type="Script" path="res://kan.gd" id="1_h2524"]
+[ext_resource type="PackedScene" uid="uid://cayubuqybei7h" path="res://worlds/testr3.tscn" id="2_cxcdm"]
+
+[node name="mesh" type="Node3D"]
+script = ExtResource("1_h2524")
+
+[node name="World" parent="." instance=ExtResource("2_cxcdm")]

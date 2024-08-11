@@ -1,4 +1,0 @@
-extends CodeEdit
-
-
-#text = "test"
