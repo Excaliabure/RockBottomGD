@@ -32,5 +32,11 @@ shape = SubResource("SphereShape3D_7t4x7")
 [node name="Default_Lookat" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63423, 0)
 
+[node name="phantom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0137305)
+material_override = SubResource("StandardMaterial3D_8713b")
+transparency = 0.44
+mesh = ExtResource("2_dvhxw")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

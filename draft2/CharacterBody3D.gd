@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
 # Hyper parameters
-const MAX_SPEED := 5.0
-const JUMP_VELOCITY := 4.5
-const ACCELERATION := 1
-const MOUSE_SENSITIVITY :=  0.001
+var MAX_SPEED := 5.0
+var JUMP_VELOCITY := 4.5
+var ACCELERATION := 1
+var MOUSE_SENSITIVITY :=  0.001
 
 
 
@@ -17,12 +17,15 @@ const MOUSE_SENSITIVITY :=  0.001
 
 # ram vars
 var current_speed = 0.0
+var extra_speed = 0.0
 var coin_counter = 0
 var using_action_ray = false
 var item := 0
 var len_items := 0
 var debug_stats := false
 var stats := ""
+var object_placed = null
+
 
 # exported vars
 @export var rs_health : Resource
@@ -31,7 +34,12 @@ var stats := ""
 
 # Note : to add more 
 var obj_dict = {0 : preload("res://draft/placing/pokedots.tscn"),
-				1 : preload("res://draft2/turret.tscn")}
+				1 : preload("res://draft2/turret.tscn"),
+				2 : preload("res://draft/powerup.tscn"),
+				3 : preload("res://draft/teleporter.tscn")}
+				
+				
+var visible_obj_dict = null
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -39,9 +47,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	Phantom_list_hide()
-	len_items = len(Phantom_List.get_children())
-	$Control.hide()
+	#Phantom_list_hide()
+	len_items = len(obj_dict.keys())
+	#$Control.hide()
+	visible_obj_dict = {0 : $Phantom_List/pokedot,
+						1 : $Phantom_List/turret,
+						2 : $Phantom_List/powerup,
+						3 : $Phantom_List/teleporter}
 	
 	
 
@@ -63,8 +75,8 @@ func _physics_process(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = direction.x * MAX_SPEED
-		velocity.z = direction.z * MAX_SPEED
+		velocity.x = direction.x * (MAX_SPEED + extra_speed)
+		velocity.z = direction.z * (MAX_SPEED + extra_speed)
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, MAX_SPEED)
@@ -73,44 +85,33 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("c"):
 		using_action_ray = (using_action_ray == false)
-		
-		Phantom_List.get_children()[item % len_items].visible = true
+		visible_obj_dict[abs(item % len_items)].visible = true
 		# Instantiate object to spawn in
 		# for now just cube 
 	
 	
 	if using_action_ray:
-		Phantom_List.global_position = actionray.get_collision_point()
-		
-		# A bit messy but gets the job done
-		if Input.is_action_just_pressed("Left_Arrow"):
-			Phantom_List.get_children()[item % len_items].visible = false
-			Phantom_List.get_children()[(item + 1) % len_items].visible = true
-			item += 1
-			
-		elif Input.is_action_just_pressed("Right_Arrow"):
-			Phantom_List.get_children()[item % len_items].visible = false
-			Phantom_List.get_children()[(item-1) % len_items].visible = true
-			item -= 1
-		
+		choosing()
 		if Input.is_action_just_pressed("ui_m1"):
+			var obj = obj_dict[item].instantiate()
+			obj.global_position = actionray.get_collision_point()
+			get_node('.').get_parent().add_child(obj)
+			visible_obj_dict[item].visible = false
 			using_action_ray = false
-			var object = obj_dict[item % len_items].instantiate()
-			object.position = actionray.get_collision_point()
-			
-			get_node(".").get_parent().add_child(object)
-			Phantom_list_hide()
-			
-			
-			print("Instantiated")
-	
+		
+		
+	if Input.is_action_just_pressed("dot"):
+		for o in $Area3D.get_overlapping_areas():
+			if "active" in o:
+				o.active = o.active == false
 	
 	
 	
 	
 	# Debug stuff
 	if Input.is_action_just_pressed("p"):
-		print(rs_health)
+		
+		pass
 		#print(obj_dict[1])
 	if Input.is_action_just_pressed("["):
 		debug_stats = (debug_stats == false)
@@ -121,10 +122,28 @@ func _physics_process(delta):
 			$Control.hide()
 	
 	$Control/Stats.text = get_stats()
-		
-	
-	
+
+	decay() # Used to decay 
 	move_and_slide()
+
+
+var phantom_obj = null
+var prev_phantom_obj = null
+func choosing():
+	
+	if Input.is_action_just_pressed(("Left_Arrow")):
+		visible_obj_dict[item].visible = false
+		item = abs((item - 1) % len_items)
+		visible_obj_dict[item].visible = true 
+		
+	elif Input.is_action_just_pressed(("Right_Arrow")):
+		
+		visible_obj_dict[item].visible = false
+		item = abs((item + 1) % len_items)
+		visible_obj_dict[item].visible = true
+	$Phantom_List.global_position = actionray.get_collision_point()
+	
+
 
 
 func Phantom_list_hide():
@@ -139,12 +158,20 @@ func _input(event):
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 
 
+func get_stats():
+	stats = ""
+	stats += "Speed : " + str(velocity.length()).left(5) + "\n"
+	stats += "Health : " + str(rs_health.health) + "\n"
+	
+	
+	return stats
+	
+func decay():
+	if extra_speed > 0.01:
+		extra_speed -= 0.01
+		
 
 func _on_body_entered(body):
 	pass # Replace with function body.
 
-func get_stats():
-	stats = ""
-	stats += "Health : " + str(rs_health.health)
-	return stats
-	
+		
