@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b62j4y5tcxwns"]
+
+[ext_resource type="Script" path="res://draft/mining_drill.gd" id="1_260ie"]
+[ext_resource type="PackedScene" uid="uid://6247k2xs3ce2" path="res://blender exports/rope.glb" id="2_gmf5n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mynd"]
+albedo_color = Color(0.396078, 0.25098, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_whgjs"]
+material = SubResource("StandardMaterial3D_4mynd")
+
+[node name="Mining Drill" type="Node3D"]
+script = ExtResource("1_260ie")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_whgjs")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="rope" parent="." instance=ExtResource("2_gmf5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.552968, 0, 0.442379)

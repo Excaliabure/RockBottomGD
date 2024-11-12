@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dp0hl77kum7w4"
-path="res://.godot/imported/pedestal.glb-6b8582679fa9534c0394c94e980ab749.scn"
+uid="uid://6247k2xs3ce2"
+path="res://.godot/imported/rope.glb-22004c761a4ae4efaca9a95fa1d65a86.scn"
 
 [deps]
 
-source_file="res://draft/pedestal.glb"
-dest_files=["res://.godot/imported/pedestal.glb-6b8582679fa9534c0394c94e980ab749.scn"]
+source_file="res://blender exports/rope.glb"
+dest_files=["res://.godot/imported/rope.glb-22004c761a4ae4efaca9a95fa1d65a86.scn"]
 
 [params]
 
@@ -24,24 +24,28 @@ meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
-skins/use_named_skins=false
+skins/use_named_skins=true
 animation/import=true
 animation/fps=30
 animation/trimming=false
-animation/remove_immutable_tracks=false
+animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"pedestal_Icosphere": {
+"rope_Cylinder": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
-"save_to_file/make_streamable": "",
-"save_to_file/path": "res://draft/pedestalmesh.res"
+"save_to_file/path": "res://draft/rope.res"
+}
+},
+"nodes": {
+"PATH:Armature/Skeleton3D": {
+"rest_pose/external_animation_library": null
 }
 }
 }

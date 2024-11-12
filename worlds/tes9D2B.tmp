@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cuob556bna1iq" path="res://draft/coin.tscn" id="3_0p6pm"]
 [ext_resource type="PackedScene" uid="uid://bln6mkf5jker" path="res://draft/powerup.tscn" id="4_f8m18"]
 [ext_resource type="PackedScene" uid="uid://cqh5toxeo8mqw" path="res://draft2/turret.tscn" id="5_6bfm1"]
+[ext_resource type="PackedScene" uid="uid://rynvn6fw1loy" path="res://draft/drone.tscn" id="6_c57to"]
 [ext_resource type="PackedScene" uid="uid://b7afcsclxvfc2" path="res://draft/teleporter.tscn" id="6_fk3p3"]
 [ext_resource type="PackedScene" uid="uid://ck1x4yvbtpmxu" path="res://draft/enemy.tscn" id="7_dfr45"]
-[ext_resource type="PackedScene" uid="uid://rynvn6fw1loy" path="res://draft/drone.tscn" id="7_x4hlq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am5rh"]
 albedo_texture = ExtResource("1_ei5vk")
@@ -109,8 +109,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67142, -0.310009, -3.15534)
 [node name="teleporter_node" parent="." instance=ExtResource("6_fk3p3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.06094, 0.0875781, -8.71091)
 
+[node name="drone" parent="." instance=ExtResource("6_c57to")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62927, 1.47969, 0.947822)
+
 [node name="enemy" parent="." instance=ExtResource("7_dfr45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96651, 3.03562, 5.00987)
-
-[node name="drone" parent="." instance=ExtResource("7_x4hlq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84574, 0.616897, 3.90574)

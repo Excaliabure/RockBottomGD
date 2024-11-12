@@ -23,4 +23,5 @@ func _process(delta):
 
 func _on_body_entered(body):
 	queue_free()
-	body.coin_counter += 1
+	if "coin_counter" in body:
+		body.coin_counter += 1

@@ -22,7 +22,6 @@ func _physics_process(delta):
 		
 		input = Vector3(Input.get_axis("ui_a","ui_d"), Input.get_axis("ui_left_ctrl","ui_jump"), Input.get_axis("ui_w","ui_s")) * 0.1
 		
-			
 		position += input
 		
 	else:
@@ -34,9 +33,6 @@ func _physics_process(delta):
 		pitch = Input.get_axis("joy_right_up", "joy_right_down") * delta * scalar
 		yaw = Input.get_axis("joy_right_left", "joy_right_right") * delta * scalar
 
-		roll = Input.get_axis("joy_left_right", "joy_left_left") * delta * scalar
-		pitch = Input.get_axis("joy_right_up", "joy_right_down") * delta * scalar
-		yaw = Input.get_axis("joy_right_left", "joy_right_right") * delta * scalar
 		
 		
 		# Apply rotation based on input
@@ -44,11 +40,11 @@ func _physics_process(delta):
 		transform = transform.rotated_local(Vector3.RIGHT, pitch)
 		transform = transform.rotated_local(Vector3.FORWARD, yaw)
 		
-		
+		print(pitch,roll,yaw)
 		# Apply thrust
 		apply_central_force(thrust_vec)
 		
-	
+	#
 func _process(delta):
 	if Input.is_action_just_pressed("joypad_a"):
 		position = Vector3(0.0,2.0,0.0)
