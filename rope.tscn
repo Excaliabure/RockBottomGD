@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw1o0qdcfgb8n"]
-
-[ext_resource type="PackedScene" uid="uid://6247k2xs3ce2" path="res://blender exports/rope.glb" id="1_7xm02"]
-
-[node name="rope" instance=ExtResource("1_7xm02")]

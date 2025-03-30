@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="rs_placable" load_steps=2 format=3 uid="uid://cfmpsok3not5c"]
-
-[ext_resource type="Script" path="res://resources/rs_placeable.gd" id="1_qbply"]
-
-[resource]
-script = ExtResource("1_qbply")

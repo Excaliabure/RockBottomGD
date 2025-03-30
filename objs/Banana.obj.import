@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cnrp62vrbilhm"
+path="res://.godot/imported/Banana.obj-d4f8193ce9e93ab35d3bbeb2e4cf40fd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Banana.obj-d4f8193ce9e93ab35d3bbeb2e4cf40fd.mesh"]
+
+source_file="res://objs/Banana.obj"
+dest_files=["res://.godot/imported/Banana.obj-d4f8193ce9e93ab35d3bbeb2e4cf40fd.mesh", "res://.godot/imported/Banana.obj-d4f8193ce9e93ab35d3bbeb2e4cf40fd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

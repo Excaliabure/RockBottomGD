@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjgpq3hj6bpuv"]
+
+[ext_resource type="Texture2D" uid="uid://dp2pjlo17vkc5" path="res://textures/inventory-background.png" id="2_umpvp"]
+
+[sub_resource type="GDScript" id="GDScript_41j8q"]
+script/source = "extends Panel
+class_name Inv_Slot	
+
+@onready var itemVisual : Sprite2D
+
+sfunc update(item : Item):
+	#print(item)
+	if !item:
+		#itemVisual.visible = false
+		pass
+	else:
+		print(item.inventory_icon)
+		
+"
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_41j8q")
+
+[node name="Inventory-background" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("2_umpvp")

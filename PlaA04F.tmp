@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://hqdo5gtsmbhe"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_yii3p"]
+[ext_resource type="PackedScene" uid="uid://dq2nduhj1s3mm" path="res://Scenes/Inventory.tscn" id="2_c717a"]
+
+[sub_resource type="Resource" id="Resource_rexp2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4u5u6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dfex1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gask5"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27012, 0)
+script = ExtResource("1_yii3p")
+rs_health = SubResource("Resource_rexp2")
+
+[node name="Inv" parent="." instance=ExtResource("2_c717a")]
+clip_contents = true
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 1120.0
+offset_bottom = 615.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.75, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_4u5u6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.75, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_dfex1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565413, 0)
+
+[node name="ActionRay" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 258.0
+offset_top = 176.0
+offset_right = 489.0
+offset_bottom = 502.0
+
+[node name="Stats" type="CodeEdit" parent="Control"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = -161.0
+offset_right = -43.0
+offset_bottom = 131.0
+placeholder_text = "Lore Ipsum"
+
+[node name="PickupArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
+transform = Transform3D(2.68135, 0, 0, 0, 2.68135, 0, 0, 0, 2.68135, 0, 0, 0)
+shape = SubResource("SphereShape3D_gask5")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

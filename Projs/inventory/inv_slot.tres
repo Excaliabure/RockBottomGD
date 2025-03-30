@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InvSlot" load_steps=3 format=3 uid="uid://dem3kycb42p46"]
+
+[ext_resource type="Script" path="res://Projs/inventory/inv_slot.gd" id="1_6dbwc"]
+[ext_resource type="Resource" uid="uid://brgd1m8eq18w6" path="res://Projs/inventory/items/apple.tres" id="1_qyafw"]
+
+[resource]
+script = ExtResource("1_6dbwc")
+item = ExtResource("1_qyafw")
+amount = 0

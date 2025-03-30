@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cagtornhqgyf6"]
+
+[ext_resource type="ArrayMesh" uid="uid://cnrp62vrbilhm" path="res://objs/Banana.obj" id="1_shc0v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mojd"]
+size = Vector3(0.615234, 0.340485, 0.16626)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0078125, 0.160873, 0.0045166)
+shape = SubResource("BoxShape3D_3mojd")
+
+[node name="Banana" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
+mesh = ExtResource("1_shc0v")

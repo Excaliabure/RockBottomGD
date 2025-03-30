@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy4kijpprv1j7"]
-
-[ext_resource type="Script" path="res://draft/guns/boop/boop_gun.gd" id="1_k5mrq"]
-
-[node name="BoopGun" type="Node3D"]
-script = ExtResource("1_k5mrq")

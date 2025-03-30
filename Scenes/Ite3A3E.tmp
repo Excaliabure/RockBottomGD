@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvn5l17fxdcs3"]
+
+[ext_resource type="Script" path="res://Scripts/item_apple.gd" id="1_2dudp"]
+[ext_resource type="ArrayMesh" uid="uid://chdxy15nqaf4r" path="res://objs/Item_Apple.obj" id="1_uhjh8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxk5l"]
+albedo_color = Color(1, 0, 0.0784314, 1)
+
+[node name="Apple" type="Node3D"]
+script = ExtResource("1_2dudp")
+
+[node name="ItemApple" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+mesh = ExtResource("1_uhjh8")
+surface_material_override/0 = SubResource("StandardMaterial3D_vxk5l")

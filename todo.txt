@@ -1,11 +1,16 @@
-Add turret texture
-Add bullet textures
+THe Bible:
+	
+	Naming convention for files : Item_Apple
+	functions all have lowercase, so Item_Apple.eat()
+
+TODO:
+	* Solidify Inventory management and item pickup mechanics
 
 
-Grapple hook
-Vines reaching for u (inverse kinematics)
-flight
-teleportation
-make a teleporter
+IDEAS:
 
-
+	Grapple hook
+	Vines reaching for u (inverse kinematics)
+	flight
+	teleportation
+	make a teleporter

@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://bm2f16mv02oge"]
+
+[ext_resource type="Script" path="res://Projs/inventory/items/banana.gd" id="1_raorg"]
+[ext_resource type="Script" path="res://Projs/inventory/inventory_item.gd" id="2_a45o2"]
+[ext_resource type="Texture2D" uid="uid://ltkdv6mfnlkw" path="res://Projs/inventory/textures/banana.png" id="3_5aqm7"]
+[ext_resource type="ArrayMesh" uid="uid://cnrp62vrbilhm" path="res://objs/Banana.obj" id="4_e112g"]
+
+[sub_resource type="Resource" id="Resource_8l4gl"]
+script = ExtResource("2_a45o2")
+name = "Banana"
+texture = ExtResource("3_5aqm7")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f04ir"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ggie7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gccn"]
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="Item_banana" type="RigidBody3D"]
+script = ExtResource("1_raorg")
+item = SubResource("Resource_8l4gl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.397539, 0, 0, 0, 0.397539, 0, 0, 0, 0.397539, 0, 0, 0)
+shape = SubResource("SphereShape3D_f04ir")
+
+[node name="CollectArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectArea"]
+transform = Transform3D(2.00837, 0, 0, 0, 2.00837, 0, 0, 0, 2.00837, 0, 0, 0)
+shape = SubResource("SphereShape3D_ggie7")
+
+[node name="Banana" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
+mesh = ExtResource("4_e112g")
+surface_material_override/0 = SubResource("StandardMaterial3D_7gccn")
+
+[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]

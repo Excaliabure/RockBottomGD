@@ -1,14 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cayubuqybei7h"]
+[gd_scene load_steps=14 format=3 uid="uid://cayubuqybei7h"]
 
-[ext_resource type="PackedScene" uid="uid://dps58376asb5a" path="res://Projs/inventory/items/apple.tscn" id="3_4gn34"]
-[ext_resource type="PackedScene" uid="uid://bm2f16mv02oge" path="res://Projs/inventory/items/banana.tscn" id="3_qnyjr"]
-[ext_resource type="PackedScene" uid="uid://hqdo5gtsmbhe" path="res://Player.tscn" id="7_tnv8r"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sjabb"]
-load_path = "res://.godot/imported/texture_11.png-3e5fca7a5bbbe2949bd41d9b27431b4c.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://bqabno4bw4ng4" path="res://textures/addons/kenney_prototype_textures/orange/texture_11.png" id="1_ei5vk"]
+[ext_resource type="PackedScene" uid="uid://demnc4kxko28e" path="res://tscn_apple.tscn" id="7_6lefq"]
+[ext_resource type="PackedScene" uid="uid://hqdo5gtsmbhe" path="res://player_c.tscn" id="7_tnv8r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am5rh"]
-albedo_texture = SubResource("CompressedTexture2D_sjabb")
+albedo_texture = ExtResource("1_ei5vk")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bxyjd"]
 size = Vector2(100, 100)
@@ -90,12 +87,8 @@ shape = SubResource("ConcavePolygonShape3D_aq4s1")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i5lfa")
 
-[node name="Player" parent="." instance=ExtResource("7_tnv8r")]
+[node name="Node3D" parent="." instance=ExtResource("7_6lefq")]
+transform = Transform3D(0.0214028, 0, 0, 0, 0.0214028, 0, 0, 0, 0.0214028, -2.48214, 1.04895, 3.62375)
 
-[node name="Area3D" parent="." instance=ExtResource("3_4gn34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00384784, 6.16165, -0.00704384)
-
-[node name="Item_banana" parent="." instance=ExtResource("3_qnyjr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8845, 2.05887, -1.74047)
-
-[connection signal="lasers" from="Player" to="Player" method="_on_lasers"]
+[node name="player_c" parent="." instance=ExtResource("7_tnv8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.44716, 0)
