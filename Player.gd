@@ -25,12 +25,6 @@ var debug_stats := false
 var stats := ""
 var object_placed = null
 
-# exported vars
-#@export var inv : Inventory
-
-# scene loading
-
-# Note : to add more 
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

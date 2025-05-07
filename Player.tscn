@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://hqdo5gtsmbhe"]
+[gd_scene load_steps=8 format=3 uid="uid://hqdo5gtsmbhe"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_yii3p"]
 [ext_resource type="Resource" uid="uid://bmfw05kpnehsq" path="res://Projs/inventory/playerinv.tres" id="2_4r00q"]
 [ext_resource type="PackedScene" uid="uid://b7jqrtecrlobr" path="res://Projs/inventory/gui/inv_ui.tscn" id="4_gxmb0"]
+[ext_resource type="Script" path="res://Projs/abilities/base_ability.gd" id="4_x6nrm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4u5u6"]
 
@@ -56,5 +57,8 @@ placeholder_text = "Lore Ipsum"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
 transform = Transform3D(2.68135, 0, 0, 0, 2.68135, 0, 0, 0, 2.68135, 0, 0, 0)
 shape = SubResource("SphereShape3D_gask5")
+
+[node name="Node_Base_Ability" type="Node" parent="."]
+script = ExtResource("4_x6nrm")
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
