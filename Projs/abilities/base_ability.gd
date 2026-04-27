@@ -21,18 +21,8 @@ var mode = null
 
 
 func _process(delta):
-	var action = null
-	for i in range(maxCasts):
-		action = abilityMatrix[i]
-		# Sets mode
-		if action % 10 == 0:
-			mode = action
-		else:
-			do_action(mode, action)
-			
+	pass
 func do_action(mode, action):
 	
 	pass
-	
-func run():
 	
